@@ -69,13 +69,8 @@ public class Scanner {
 
 	private Token getToken(String token, HashMap<String, String> env) {
 		Token ret = null;
-		if (Regex.isVariable(token)) {
-			if (env.containsKey(token)) {
-				ret = new Token(TokenType.VARIABLE, env.get(token));
-			} else {
-				throw new LexError("Unexpected character: " + token + " is not in env.");
-			}
-		} else if (Regex.isNum(token)) {
+
+		if (Regex.isNum(token) || Regex.isVariable(token)) {
 			ret = new Token(TokenType.NUM, token);
 		} else if (Regex.isOP(token)) {
 			ret = new Token(Regex.getOPTokenType(token), token);

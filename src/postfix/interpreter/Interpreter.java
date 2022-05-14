@@ -42,6 +42,10 @@ public class Interpreter implements Expr.Visitor<Integer> {
 
 	@Override
 	public Integer visitNumberExpr(Expr.Number expr) {
+		if (this.env.containsKey(expr.value)) {
+			return Integer.parseInt(this.env.get(expr.value));
+		}
+
 		return Integer.parseInt(expr.value);
 	}
 
