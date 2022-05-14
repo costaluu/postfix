@@ -30,10 +30,6 @@ public class Interpreter implements Expr.Visitor<Integer> {
 		this.env.put(key, value);
 	}
 
-	public HashMap<String, String> getEnv() {
-		return this.env;
-	}
-
 	public int interp(Expr expression) {
 		int value = evaluate(expression);
 

@@ -102,7 +102,7 @@ public class Postfix {
 	private static void run(String source) {
 		try {
 			Scanner scanner = new Scanner(source);
-			List<Token> tokens = scanner.scan(interpreter.getEnv());
+			List<Token> tokens = scanner.scan();
 
 			// debugging for tokens
 			if (debugging) {

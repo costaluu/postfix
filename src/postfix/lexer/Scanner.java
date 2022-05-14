@@ -19,7 +19,6 @@ package postfix.lexer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.HashMap;
 
 /**
  * @author Henrique Rebelo
@@ -40,8 +39,8 @@ public class Scanner {
 	 * @param program
 	 * @return the list of tokens
 	 */
-	public List<Token> scan(HashMap<String, String> env) {
-		return this.scan(this.source, env);
+	public List<Token> scan() {
+		return this.scan(this.source);
 	}
 
 	/**
@@ -51,12 +50,12 @@ public class Scanner {
 	 * @param program
 	 * @return the list of tokens
 	 */
-	public List<Token> scan(String program, HashMap<String, String> env) {
+	public List<Token> scan(String program) {
 		StringTokenizer tokenizer = new StringTokenizer(program, Token.TOKENIZER_DELIMITER);
 		// processing each tokenized word
 		while (tokenizer.hasMoreElements()) {
 			String tokenStr = tokenizer.nextToken();
-			this.tokens.add(this.getToken(tokenStr, env));
+			this.tokens.add(this.getToken(tokenStr));
 		}
 		this.tokens.add(new Token(TokenType.EOF, "")); // EOF
 
@@ -67,7 +66,7 @@ public class Scanner {
 	// HELPERS METHODS
 	// -------------------------------------------------------------
 
-	private Token getToken(String token, HashMap<String, String> env) {
+	private Token getToken(String token) {
 		Token ret = null;
 
 		if (Regex.isNum(token) || Regex.isVariable(token)) {
